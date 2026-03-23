@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<application
+    type="ui-extensibility"
+    version="1.0.0">
+    <guid>5811A13C-1DAB-40AA-BC02-D5DFDFB12345</guid>
+    <name>AI Legal Assistant</name>
+    <description>M-Files RAG and Multi-LLM Chat Integration with PIRS Knowledge Base</description>
+    <publisher>Antigravity</publisher>
+    <modules>
+        <module environment="shellui">
+            <file>main.js</file>
+        </module>
+    </modules>
+    <dashboards>
+        <dashboard id="ai_chat_dashboard">
+            <content>index.html</content>
+        </dashboard>
+    </dashboards>
+</application>
