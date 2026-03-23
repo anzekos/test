@@ -8,8 +8,8 @@ class PIRSRetriever:
     def __init__(self):
         self.is_connected = True
         self.collection_name = "pirs_collection"
+        self._indexed = False
         logger.info("PIRS Retriever inicializiran z vektorsko bazo.")
-        self._ensure_index()
         
     def _ensure_index(self):
         """Za demonstracijo uvozimo zacetno PIRS znanje v vektorsko bazo."""
@@ -50,6 +50,10 @@ class PIRSRetriever:
         Poizvedba po PIRS (Pravno Informacijski Sistem / Strokovna baza).
         Vrne relevantne sekcije s pomocjo vektorskega iskanja.
         """
+        if not self._indexed:
+            self._ensure_index()
+            self._indexed = True
+
         logger.info(f"PIRS Vektorsko iskanje za: '{query}'")
         try:
             results = vector_store.search(self.collection_name, query, top_k=top_k)

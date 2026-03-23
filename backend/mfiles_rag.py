@@ -9,8 +9,8 @@ class MFilesRetriever:
     def __init__(self):
         self.is_connected = True
         self.collection_name = "mfiles_collection"
+        self._indexed = False
         logger.info("M-Files Retriever inicializiran.")
-        self._ensure_index()
         
     def _ensure_index(self):
         """Pomozna metoda, ki indeksira nekaj dokumentov ce zbirka se ni polna."""
@@ -31,6 +31,10 @@ class MFilesRetriever:
         """
         Poizvedba po internih M-Files dokumentih odvetniške pisarne s pomocjo Vector baze
         """
+        if not self._indexed:
+            self._ensure_index()
+            self._indexed = True
+
         logger.info(f"M-Files Vektorsko iskanje za: '{query}'")
         
         try:
