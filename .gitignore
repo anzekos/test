@@ -1,0 +1,24 @@
+# Virtualna okolja (največji krivec za tvojih 144MB)
+venv/
+env/
+ENV/
+.env
+.venv
+
+# Python predpomnilnik (nepotrebne binarne datoteke)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Nastavitve urejevalnikov (VS Code, PyCharm)
+.vscode/
+.idea/
+
+# Distribucija / paketi
+dist/
+build/
+*.egg-info/
+
+# Sistemske datoteke
+.DS_Store
+Thumbs.db
