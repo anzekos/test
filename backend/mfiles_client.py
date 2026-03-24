@@ -59,12 +59,26 @@ class MFilesClient:
             logger.error(f"Povezovalna napaka pri avtentikaciji M-Files: {e}")
             return False
 
-    def _extract_text(self, raw_bytes: bytes) -> str:
-        """Best-effort plain text extraction from raw file content."""
+    def _extract_text(self, raw_bytes: bytes, filename: str = "") -> str:
+        """Best-effort plain text extraction from raw file content based on extension."""
+        filename = filename.lower()
+        import io
         try:
-            return raw_bytes.decode("utf-8", errors="replace").strip()
-        except Exception:
-            return raw_bytes.decode("latin-1", errors="replace").strip()
+            if filename.endswith(".docx"):
+                import docx
+                doc = docx.Document(io.BytesIO(raw_bytes))
+                return "\n".join([p.text for p in doc.paragraphs])
+            elif filename.endswith(".pdf"):
+                import pypdf
+                reader = pypdf.PdfReader(io.BytesIO(raw_bytes))
+                return "".join([page.extract_text() or "" for page in reader.pages])
+            else:
+                return raw_bytes.decode("utf-8", errors="replace").strip()
+        except Exception as e:
+            logger.warning(f"Fallback luščenja besedila za {filename} po napaki: {e}")
+            if isinstance(raw_bytes, bytes):
+                return raw_bytes.decode("utf-8", errors="replace").strip()
+            return ""
 
     def fetch_documents(self, query: str = "") -> List[Dict[str, Any]]:
         """
@@ -128,7 +142,7 @@ class MFilesClient:
                         if content_resp.status_code != 200:
                             logger.warning(f"Ne morem prenesti vsebine datoteke {file_id}")
                             continue
-                        text = self._extract_text(content_resp.content)
+                        text = self._extract_text(content_resp.content, filename=file_name)
                     except Exception as e:
                         logger.warning(f"Napaka pri prenosu datoteke {file_id}: {e}")
                         continue

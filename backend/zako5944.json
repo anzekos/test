@@ -1,0 +1,756 @@
+{
+  "data": {
+    "evidencniPodatki": {
+      "zbirkaElementID": 513288,
+      "karticaTip": "Predpis Si",
+      "nazivZbirke": "Register predpisov",
+      "barve": [
+        "#298c42"
+      ],
+      "semafor": {
+        "id": 156,
+        "naziv": "Veljaven predpis"
+      },
+      "naslov": "Zakon o delovnih razmerjih (ZDR-1)",
+      "naslovAng": null,
+      "citat": "Uradni list RS, št. <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2013-01-0784\" title=\"Zakon o delovnih razmerjih (ZDR-1)\">21/13</a>, <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2013-21-2826\" title=\"Popravek Zakona o delovnih razmerjih\">78/13</a> – popr., <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2015-01-1930\" title=\"Zakon o zaposlovanju, samozaposlovanju in delu tujcev (ZZSDT)\">47/15</a> – ZZSDT, <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2016-01-1428\" title=\"Zakon o spremembah in dopolnitvah Pomorskega zakonika (PZ-F)\">33/16</a> – PZ-F, <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2016-01-2296\" title=\"Zakon o dopolnitvah Zakona o delovnih razmerjih (ZDR-1A)\">52/16</a>, <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2017-01-0741\" title=\"Odločba o razveljavitvi četrtega odstavka 88. člena Zakona o delovnih razmerjih in delni razveljavitvi sklepa Vrhovnega sodišča, sklepa Višjega delovnega in socialnega sodišča in sklepa Delovnega sodišča v Mariboru\">15/17</a> – odl. US, <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2019-01-0914\" title=\"Zakon o poslovni skrivnosti (ZPosS)\">22/19</a> – ZPosS, <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2019-01-3722\" title=\"Zakon o dopolnitvi Zakona o delovnih razmerjih (ZDR-1B)\">81/19</a>, <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2020-01-3772\" title=\"Zakon o interventnih ukrepih za pomoč pri omilitvi posledic drugega vala epidemije COVID-19 (ZIUPOPDVE)\">203/20</a> – ZIUPOPDVE, <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2021-01-2550\" title=\"Zakon o spremembah in dopolnitvah Zakona o čezmejnem izvajanju storitev (ZČmIS-A)\">119/21</a> – ZČmIS-A, <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2021-01-4069\" title=\"Odločba o razveljavitvi tretjega, četrtega in petega odstavka 89. člena Zakona o delovnih razmerjih ter 156.a člena Zakona o javnih uslužbencih\">202/21</a> – odl. US, <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2022-01-0215\" title=\"Zakon o spremembah Zakona o delovnih razmerjih (ZDR-1C)\">15/22</a>, <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2022-01-1186\" title=\"Zakon za urejanje položaja študentov (ZUPŠ-1)\">54/22</a> – ZUPŠ-1, <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2023-01-3325\" title=\"Zakon o spremembah in dopolnitvah Zakona o delovnih razmerjih (ZDR-1D)\">114/23</a>, <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2023-01-4287\" title=\"Zakon o interventnih ukrepih na področju zdravstva, dela in sociale ter z zdravstvom povezanih vsebin (ZIUZDS)\">136/23</a> – ZIUZDS in <a target=\"_blank\" href=\"https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2025-01-2488\" title=\"Zakon o spremembah in dopolnitvah Zakona o urejanju trga dela (ZUTD-I)\">70/25</a> – ZUTD-I",
+      "zunanjiID": "ZAKO5944",
+      "eva": "2010-2611-0064",
+      "epa": "0728-VI",
+      "eda": null,
+      "sop": "2013-01-0784",
+      "kratica": "ZDR-1",
+      "celex": null,
+      "ecli": null,
+      "vrstaAkta": "Zakon",
+      "ulStLeto": "21/13",
+      "datum": null,
+      "podpisano": null,
+      "sprejeto": "2013-03-05",
+      "objavljeno": "2013-03-13",
+      "veljaOd": "2013-04-12",
+      "uporabljaOd": null,
+      "veljaDo": null,
+      "uporabljaDo": null,
+      "datumDokumenta": null,
+      "rokZaPrenos": null,
+      "organ": null,
+      "organNosilni": "Ministrstvo za delo, družino in socialne zadeve",
+      "organSprejetja": "Državni zbor RS",
+      "euPredpisStevilkaUl": null,
+      "npbVerzija": null,
+      "npbStevilkaDokumenta": null,
+      "eemaNaravaAkta": null,
+      "eemaNasledstvo": null,
+      "drzave": null,
+      "organizacije": null,
+      "krsitevStevilka": null,
+      "krsitevVrsta": null,
+      "krsitevPostopki": null,
+      "sodisceOpravilnaStevilka": null,
+      "sodisceOpravilnaStevilka2": null,
+      "sodisceEvidencnaStevilka": null,
+      "sodisceOddelek": null,
+      "sodisceInstituti": null,
+      "sodiscePodrocja": null,
+      "komentiranjeNpbZbirkaElementId": null,
+      "komentiranjeDatumOd": null,
+      "komentiranjeDatumDo": null,
+      "jedro": null,
+      "zveza": null,
+      "cleni": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "6a",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59d",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "65",
+        "66",
+        "67",
+        "68",
+        "70",
+        "71",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77",
+        "79",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "90",
+        "91",
+        "92",
+        "93",
+        "94",
+        "95",
+        "96",
+        "97",
+        "98",
+        "99",
+        "99d",
+        "100",
+        "101",
+        "102",
+        "103",
+        "104",
+        "105",
+        "106",
+        "107",
+        "108",
+        "109",
+        "110",
+        "111",
+        "112",
+        "113",
+        "114",
+        "115",
+        "116",
+        "117",
+        "118",
+        "119",
+        "122",
+        "123",
+        "125",
+        "126",
+        "127",
+        "128",
+        "129",
+        "130",
+        "131",
+        "132",
+        "133",
+        "134",
+        "135",
+        "136",
+        "137",
+        "138",
+        "139",
+        "141",
+        "142",
+        "143",
+        "144",
+        "145",
+        "146",
+        "147",
+        "148",
+        "149",
+        "150",
+        "151",
+        "153",
+        "154",
+        "155",
+        "156",
+        "157",
+        "158",
+        "159",
+        "160",
+        "161",
+        "162",
+        "163",
+        "164",
+        "165",
+        "166",
+        "167",
+        "168",
+        "169",
+        "170",
+        "171",
+        "172",
+        "173",
+        "174",
+        "175",
+        "176",
+        "177",
+        "178",
+        "179",
+        "180",
+        "182",
+        "184",
+        "185",
+        "186",
+        "190",
+        "195",
+        "196",
+        "199",
+        "200",
+        "201",
+        "202",
+        "203",
+        "204",
+        "205",
+        "206",
+        "207",
+        "208",
+        "209",
+        "210",
+        "211",
+        "213",
+        "214",
+        "215",
+        "216",
+        "217č",
+        "217b",
+        "217a",
+        "217",
+        "218",
+        "222",
+        "224",
+        "226",
+        "228",
+        "229",
+        "230",
+        "235",
+        "236a",
+        "249",
+        "250",
+        "259",
+        "274",
+        "278",
+        "287",
+        "297",
+        "318",
+        "335",
+        "337",
+        "339",
+        "350",
+        "354",
+        "355",
+        "367a",
+        "814",
+        "1010",
+        "1101",
+        "1110",
+        "1146",
+        "1677"
+      ],
+      "obcina": null
+    },
+    "datoteke": [
+      {
+        "npbVerzija": {
+          "id": 10924029,
+          "naziv": "NPB 2",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 357044681
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 357044684
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 357044687
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 9622413,
+          "naziv": "NPB 5",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 259453182
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 259453185
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 259453188
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 9788393,
+          "naziv": "NPB 11",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 355823569
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 355823572
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 355823575
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 10304873,
+          "naziv": "NPB 6",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 356397004
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 356397007
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 356397010
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 9904696,
+          "naziv": "NPB 8",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 355961530
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 355961533
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 355961536
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 10012957,
+          "naziv": "NPB 7",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 356077995
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 356077998
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 356078001
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 9350787,
+          "naziv": "NPB 13",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 355353084
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 355353087
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 355353090
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 9708994,
+          "naziv": "NPB 10",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 355729647
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 355729650
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 355729653
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 5259536,
+          "naziv": "NPB 9",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 351243493
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 351243496
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 351243499
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 11435208,
+          "naziv": "Osnovni",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 357606374
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 357606377
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 357606380
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 11468167,
+          "naziv": "NPB 1",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 357639373
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 357639376
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 357639379
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 5175139,
+          "naziv": "NPB 4",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 351149795
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 351149798
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 351149801
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 19994516,
+          "naziv": "NPB 3",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 356358261
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 356358264
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 356358267
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 19985789,
+          "naziv": "NPB 12",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 434962399
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 434962402
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 434962405
+          }
+        ]
+      },
+      {
+        "npbVerzija": {
+          "id": 347057165,
+          "naziv": "NPB 14",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        "datoteke": [
+          {
+            "tip": "HTML_DOCUMENT",
+            "id": 358535670
+          },
+          {
+            "tip": "WORD_DOCUMENT_DOCX",
+            "id": 358535673
+          },
+          {
+            "tip": "PDF_DOCUMENT",
+            "id": 358535676
+          }
+        ]
+      }
+    ],
+    "virPovezaveOblike": "https://www.uradni-list.si/_pdf/2013/Ur/u2013021.pdf",
+    "besedilo": {
+      "npbVerzije": [
+        {
+          "id": 11435208,
+          "naziv": "Osnovni",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 11468167,
+          "naziv": "NPB 1",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 10924029,
+          "naziv": "NPB 2",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 19994516,
+          "naziv": "NPB 3",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 5175139,
+          "naziv": "NPB 4",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 9622413,
+          "naziv": "NPB 5",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 10304873,
+          "naziv": "NPB 6",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 10012957,
+          "naziv": "NPB 7",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 9904696,
+          "naziv": "NPB 8",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 5259536,
+          "naziv": "NPB 9",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 9708994,
+          "naziv": "NPB 10",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 9788393,
+          "naziv": "NPB 11",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 19985789,
+          "naziv": "NPB 12",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 9350787,
+          "naziv": "NPB 13",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        },
+        {
+          "id": 347057165,
+          "naziv": "NPB 14",
+          "komentiranjeDatumOd": null,
+          "komentiranjeDatumDo": null,
+          "datumZacetkaUporabe": null
+        }
+      ],
+      "besediloZunanjiUrl": null
+    },
+    "subscribable": true
+  },
+  "error": null
+}

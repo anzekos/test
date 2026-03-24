@@ -1,176 +1,273 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>AI Legal Assistant</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8" />
+
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 15px; background-color: #f7f9fa; }
-        .chat-container { display: flex; flex-direction: column; height: 90vh; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 20px;}
-        .messages { flex-grow: 1; overflow-y: auto; margin-bottom: 15px; border-bottom: 1px solid #eaeaea; padding-bottom: 10px; display: flex; flex-direction: column; }
-        .message-wrapper { margin-bottom: 10px; display: flex; flex-direction: column; }
-        .input-area { display: flex; align-items: stretch; }
-        input[type="text"] { flex-grow: 1; padding: 12px; border: 1px solid #ced4da; border-radius: 6px; font-size: 14px; margin-right: 10px; }
-        input[type="text"]:focus { outline: none; border-color: #0078d4; }
-        select { padding: 12px; border: 1px solid #ced4da; border-radius: 6px; font-size: 14px; background: white; margin-right: 10px; }
-        button { padding: 12px 24px; background-color: #0078d4; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 14px; transition: background-color 0.2s; }
-        button:hover { background-color: #005a9e; }
-        button:disabled { background-color: #a6c8ff; cursor: not-allowed; }
-        
-        .message { padding: 12px 16px; border-radius: 8px; max-width: 85%; line-height: 1.5; font-size: 14px; }
-        .message.system { background: #eef5fd; border: 1px solid #d0e3f5; color: #333; align-self: flex-start; }
-        .message.user { background: #0078d4; color: white; align-self: flex-end; }
-        .message.bot { background: #f8f9fa; border: 1px solid #e9ecef; align-self: flex-start; }
-        
-        .message.bot p { margin-top: 0; margin-bottom: 8px; }
-        .message.bot p:last-child { margin-bottom: 0; }
-        .message.bot pre { background: #f1f3f4; padding: 8px; border-radius: 4px; overflow-x: auto; font-size: 12px; }
-        .message.bot code { background: #f1f3f4; padding: 2px 4px; border-radius: 3px; font-size: 13px; font-family: monospace; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f3f4f6;
+        }
 
-        .sources { background: #fff5e6; border-left: 3px solid #ffa500; padding: 6px 10px; margin-top: 12px; font-size: 12px; color: #555; border-radius: 0 4px 4px 0; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid #0078d4; padding-bottom: 10px; }
-        h2 { margin: 0; color: #201f1e; font-size: 20px; font-weight: 600; }
-        .badge { background: #e1dfdd; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; color: #323130; }
-        
-        /* Loading indicator */
-        .typing-indicator {
+        .chat-container {
             display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            align-self: flex-start;
-            width: auto;
+            flex-direction: column;
+            height: 92vh;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
         }
-        .typing-indicator span {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background-color: #888;
-            border-radius: 50%;
-            margin-right: 6px;
-            animation: typing 1.4s infinite both;
-        }
-        .typing-indicator span:last-child { margin-right: 0; }
-        .typing-indicator span:nth-child(1) { animation-delay: 0s; }
-        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes typing {
-            0%, 80%, 100% { transform: scale(0); opacity: 0; }
-            40% { transform: scale(1); opacity: 1; }
-        }
-    </style>
-</head>
-<body>
-    <div class="chat-container">
-        <div class="header">
-            <h2>M-Files AI Pravni Asistent</h2>
-            <div class="badge">RAG + PIRS integracija</div>
-        </div>
-        <div class="messages" id="chatMessages">
-            <div class="message-wrapper" style="align-items: flex-start;">
-                <div class="message system">
-                    <strong>Sistem:</strong> Pozdravljeni! Sem vaš pravni asistent. Preiščem lahko eksterno bazo <strong>PIRS</strong> (Slovenska zakonodaja in sodna praksa) ter <strong>M-Files interne dokumente</strong>, da vam pomagam generirati osnutke pogodb ali rešiti pravne zadeve. Kako vam lahko pomagam?
-                </div>
-            </div>
-        </div>
-        <div class="input-area">
-            <select id="modelSelect">
-                <option value="claude">Claude (Anthropic)</option>
-                <option value="gemini">Gemini (Google)</option>
-                <option value="mistral">Mistral AI</option>
-            </select>
-            <input type="text" id="queryInput" placeholder="Vnesite vprašanje..." onkeypress="handleKeyPress(event)" />
-            <button onclick="sendMessage()" id="sendBtn">Pošlji</button>
-        </div>
-    </div>
 
-    <script>
-        function handleKeyPress(e) {
-            var key = e.which || e.keyCode;
-            if (key === 13) {
-                sendMessage();
+        .header {
+            padding: 20px 30px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 25px;
+        }
+
+        /* MESSAGE BASE */
+        .message {
+            padding: 14px 18px;
+            border-radius: 16px;
+            max-width: 75%;
+            margin-bottom: 12px;
+            line-height: 1.5;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        // Enostavna funkcija za renderiranje krepkega besedila (Markdown **text**) za IE11
-        function simpleMarkdown(text) {
-            if (!text) return "";
-            var html = text.replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>');
-            html = html.replace(/\\n/g, '<br>');
-            return html;
+        .user {
+            background: #6366f1;
+            color: white;
+            margin-left: auto;
         }
 
+        .bot {
+            background: #f3f4f6;
+        }
+
+        /* INPUT */
+        .input-wrapper {
+            padding: 15px;
+        }
+
+        .input-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 18px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            transition: 0.25s;
+        }
+
+        .input-box:focus-within {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+        }
+
+        textarea {
+            flex: 1;
+            border: none;
+            outline: none;
+            resize: none;
+            font-size: 14px;
+            max-height: 120px;
+            background: transparent;
+        }
+
+        .icon-btn {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .send-btn {
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 8px 14px;
+            cursor: pointer;
+        }
+
+        /* TYPING DOTS */
+        .typing {
+            display: flex;
+            gap: 5px;
+            padding: 10px 14px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: #999;
+            border-radius: 50%;
+            animation: bounce 1.3s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        .messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .messages::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-container">
+
+        <div class="header">
+            <strong>AI Pravni Asistent</strong>
+            <span style="font-size:12px;color:#888;">ONLINE</span>
+        </div>
+
+        <div class="messages" id="chatMessages">
+            <div class="message bot">
+                Pozdravljeni! Kako vam lahko pomagam?
+            </div>
+        </div>
+
+        <div class="input-wrapper">
+            <div class="input-box">
+                <button class="icon-btn">📎</button>
+                <textarea id="queryInput" placeholder="Ask anything..." rows="1"></textarea>
+                <button onclick="sendMessage()" id="sendBtn" class="send-btn">➤</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        const textarea = document.getElementById("queryInput");
+
+        textarea.addEventListener("input", () => {
+            textarea.style.height = "auto";
+            textarea.style.height = textarea.scrollHeight + "px";
+        });
+
+        textarea.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
         function sendMessage() {
-            var input = document.getElementById("queryInput");
-            var modelSelect = document.getElementById("modelSelect");
-            var messages = document.getElementById("chatMessages");
-            var sendBtn = document.getElementById("sendBtn");
-            
-            if (!input || !input.value) return;
-            var userQuery = input.value;
-            if (userQuery.replace(/\s/g, '').length === 0) return;
 
-            messages.innerHTML += '<div class="message-wrapper" style="align-items: flex-end;"><div class="message user">' + userQuery + '</div></div>';
+            const input = document.getElementById("queryInput");
+            const messages = document.getElementById("chatMessages");
+            const btn = document.getElementById("sendBtn");
+
+            const text = input.value.trim();
+            if (!text) return;
+
+            // USER MESSAGE
+            const userMsg = document.createElement("div");
+            userMsg.className = "message user";
+            userMsg.innerText = text;
+            messages.appendChild(userMsg);
+
             input.value = "";
+            input.style.height = "auto";
+
             messages.scrollTop = messages.scrollHeight;
 
-            sendBtn.disabled = true;
-            
-            // Add typing indicator
-            var typingId = 'typing-' + new Date().getTime();
-            messages.innerHTML += '<div class="message-wrapper" style="align-items: flex-start;" id="' + typingId + '">' +
-                '<div class="typing-indicator"><span></span><span></span><span></span></div></div>';
+            // TYPING DOTS
+            const typing = document.createElement("div");
+            typing.className = "message bot typing";
+            typing.id = "typingIndicator";
+            typing.innerHTML = `
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    `;
+            messages.appendChild(typing);
             messages.scrollTop = messages.scrollHeight;
 
-            // XHR klic (IE11 kompatibilno)
-            var xhr = new XMLHttpRequest();
+            btn.disabled = true;
+
+            // API CALL
+            const xhr = new XMLHttpRequest();
             xhr.open("POST", "http://localhost:8000/api/chat", true);
             xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
-                    var typingEl = document.getElementById(typingId);
-                    if (typingEl && typingEl.parentNode) {
-                        typingEl.parentNode.removeChild(typingEl);
-                    }
+
+                    btn.disabled = false;
+
+                    // REMOVE TYPING
+                    const typingEl = document.getElementById("typingIndicator");
+                    if (typingEl) typingEl.remove();
 
                     if (xhr.status === 200) {
-                        try {
-                            var data = JSON.parse(xhr.responseText);
-                            var sourcesHtml = '';
-                            if (data.sources && data.sources.length > 0) {
-                                sourcesHtml = '<div class="sources"><strong>Viri (PIRS / MF):</strong><br>&bull; ' + data.sources.join('<br>&bull; ') + '</div>';
-                            }
-                            
-                            var htmlReply = simpleMarkdown(data.reply);
-                            
-                            messages.innerHTML += '<div class="message-wrapper" style="align-items: flex-start;"><div class="message bot"><strong>' + data.model_used.toUpperCase() + ':</strong><br><br>' + htmlReply + sourcesHtml + '</div></div>';
-                        } catch(e) {
-                            messages.innerHTML += '<div class="message-wrapper" style="align-items: flex-start;"><div class="message system" style="background:#fde7e9; border-color:#fFcccc; color: #a1262d;">Napaka pri branju JSON: ' + e.message + '</div></div>';
-                        }
-                    } else {
-                        messages.innerHTML += '<div class="message-wrapper" style="align-items: flex-start;"><div class="message system" style="background:#fde7e9; border-color:#fFcccc; color: #a1262d;">Napaka HTTP status: ' + xhr.status + '</div></div>';
+                        const data = JSON.parse(xhr.responseText);
+
+                        const botMsg = document.createElement("div");
+                        botMsg.className = "message bot";
+                        botMsg.innerHTML = data.reply.replace(/\n/g, "<br>");
+                        messages.appendChild(botMsg);
                     }
-                    sendBtn.disabled = false;
+
                     messages.scrollTop = messages.scrollHeight;
                 }
             };
-            
-            xhr.onerror = function() {
-                var typingEl = document.getElementById(typingId);
-                if (typingEl && typingEl.parentNode) {
-                    typingEl.parentNode.removeChild(typingEl);
-                }
-                messages.innerHTML += '<div class="message-wrapper" style="align-items: flex-start;"><div class="message system" style="background:#fde7e9; border-color:#fFcccc; color: #a1262d;">Povezava s FastAPI na http://localhost:8000 ni uspela. Prepričajte se, da je zaledna storitev zagnana.</div></div>';
-                sendBtn.disabled = false;
-                messages.scrollTop = messages.scrollHeight;
-            };
 
-            var payload = JSON.stringify({ query: userQuery, model: modelSelect.value, use_rag: true });
-            xhr.send(payload);
+            xhr.send(JSON.stringify({ query: text }));
         }
+
     </script>
+
 </body>
+
 </html>

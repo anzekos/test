@@ -12,21 +12,21 @@ class LLMRouter:
         self.gemini_key = os.getenv("GEMINI_API_KEY")
         self.mistral_key = os.getenv("MISTRAL_API_KEY")
         
-    def generate_response(self, query: str, model_name: str, context: List[str]) -> str:
-        """
-        Združi prejet kontekst iz RAG-a z vprašanjem in ga pošlje
-        specifičnemu LLM modelu za generiranje odgovora.
-        """
+    def route_llm_call(self, model_name: str, query: str, context: List[str]) -> str:
         context_text = "\n\n".join(context)
         
         prompt = (
-            "Deluješ kot strokovni pravni asistent znotraj sistema M-Files.\n"
-            "Spodaj so podani relevantni viri (Zakonodaja / Interni dokumenti):\n"
-            "--------------------------------------------------\n"
+            "Ti si slovenski pravni asistent integriran v M-Files.\n"
+            "OBVEZNA PRAVILA:\n"
+            "1. Odgovarjaj IZKLJUČNO na podlagi virov v bloku <sources>. Ne uporabljaj lastnega znanja za nobeno pravno trditev.\n"
+            "2. Vsako pravno trditev MORAŠ citirati v formatu: (ZPP, člen 105, odstavek 2).\n"
+            "3. Če odgovora ni v virih, odgovori TOČNO: \"Priloženi pravni viri ne vsebujejo določbe za to vprašanje. Priporočamo posvet s specialistom.\"\n"
+            "4. Nikoli ne sklepaj kaj zakon \"verjetno\" pravi.\n"
+            "5. Vsak odgovor končaj z: \"Odgovor je informativne narave in ne predstavlja pravnega nasveta.\"\n\n"
+            "<sources>\n"
             f"{context_text}\n"
-            "--------------------------------------------------\n\n"
-            f"Vprašanje uporabnika: {query}\n\n"
-            "Strokovni odgovor (odgovori v ustrezno strukturiranem Markdown formatu in citiraj vire, če so relevantni):"
+            "</sources>\n\n"
+            f"Vprašanje uporabnika: {query}\n"
         )
         
         try:
