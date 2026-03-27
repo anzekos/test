@@ -22,3 +22,8 @@ build/
 # Sistemske datoteke
 .DS_Store
 Thumbs.db
+
+*.mfappx.vs/
+AILegalAssistant.VAF.mfappx MFilesAILegalAssistant.mfappx
+
+.vs/

@@ -30,6 +30,8 @@ class ChatRequest(BaseModel):
     query: str
     model: str = "claude"
     use_rag: bool = True
+    active_chat_id: Optional[str] = None
+    persona_instruction: Optional[str] = None
 
 
 class ChatResponse(BaseModel):
@@ -46,11 +48,12 @@ class SaveChatRequest(BaseModel):
     date: Optional[str] = None
 
 
-class SaveColleagueRequest(BaseModel):
+class Colleague(BaseModel):
     id: str
     name: str
-    emoji: str
     instruction: str
+    allowed_users: Optional[List[str]] = ["*"]
+    allowed_groups: Optional[List[str]] = []
 
 
 @app.get("/")
@@ -61,7 +64,10 @@ def read_root():
 @app.post("/api/chat", response_model=ChatResponse)
 def handle_chat(request: ChatRequest):
     query_text = request.query or ""
-    logger.info(f"Prejeta zahteva: model={request.model}, rag={request.use_rag}, query='{query_text[:80]}'")
+    instruction = request.persona_instruction or ""
+    full_prompt = f"{instruction}\n\nUporabnikovo vprašanje: {query_text}" if instruction else query_text
+    
+    logger.info(f"Prejeta zahteva: model={request.model}, rag={request.use_rag}, persona_len={len(instruction)}")
     print(f"User Query: {query_text[:80]}...")
     sources: List[str] = []
     context: List[str] = []
@@ -80,7 +86,7 @@ def handle_chat(request: ChatRequest):
             raise HTTPException(status_code=500, detail="Napaka pri priklicu RAG virov.")
 
     try:
-        reply = mcr_router.route_llm_call(request.model, request.query, context)
+        reply = mcr_router.route_llm_call(request.model, full_prompt, context)
         logger.info("Odgovor uspešno generiran.")
     except Exception as e:
         logger.error(f"Napaka pri generiranju odgovora: {e}", exc_info=True)

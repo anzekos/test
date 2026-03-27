@@ -1,0 +1,70 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\kosan\\.gemini\\antigravity\\scratch\\mfiles-ai-addon\\vaf_app\\AILegalAssistant.VAF.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\kosan\\.gemini\\antigravity\\scratch\\mfiles-ai-addon\\vaf_app\\AILegalAssistant.VAF.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\kosan\\.gemini\\antigravity\\scratch\\mfiles-ai-addon\\vaf_app\\AILegalAssistant.VAF.csproj",
+        "projectName": "AILegalAssistant.VAF",
+        "projectPath": "C:\\Users\\kosan\\.gemini\\antigravity\\scratch\\mfiles-ai-addon\\vaf_app\\AILegalAssistant.VAF.csproj",
+        "packagesPath": "C:\\Users\\kosan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kosan\\.gemini\\antigravity\\scratch\\mfiles-ai-addon\\vaf_app\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\kosan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "framework": "net472",
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.200"
+      },
+      "frameworks": {
+        "net472": {
+          "framework": "net472",
+          "targetAlias": "net472",
+          "dependencies": {
+            "MFiles.VAF.Extensions": {
+              "target": "Package",
+              "version": "[24.1.63, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

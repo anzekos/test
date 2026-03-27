@@ -481,6 +481,19 @@
 
         // ── DATA SYNC ──────────────────────────────────────────────────────────────
         function loadState() {
+            // First, try loading colleagues from M-Files Vault (NVS)
+            try {
+                if (window.shellUI && window.shellUI.Vault) {
+                    var nvs = window.shellUI.Vault.NamedValueStorageOperations.GetNamedValues(1, "AILegalAssistant.Config");
+                    var configJson = nvs.Value("Colleagues");
+                    if (configJson) {
+                        var parsed = JSON.parse(configJson);
+                        state.colleagues = parsed.Colleagues || parsed; // Handle different JSON structures
+                    }
+                }
+            } catch (e) { console.log("M-Files Vault Config not found or inaccessible. Falling back to API."); }
+
+            // Then load from API and merge or use as fallback
             apiRequest('GET', API_BASE + '/history', null, function (err, chats) {
                 if (!err && chats) {
                     state.chats = chats;
@@ -495,13 +508,13 @@
             });
 
             apiRequest('GET', API_BASE + '/colleagues', null, function (err, cols) {
-                if (!err && cols) {
+                if (!err && cols && state.colleagues.length === 0) {
                     state.colleagues = cols.length > 0 ? cols : JSON.parse(JSON.stringify(DEFAULT_COLLEAGUES));
-                    state.activeColleagueId = safeStorage.getItem('ai_active_colleague') || null;
-                    updateColleagueUI();
-                } else {
+                } else if (state.colleagues.length === 0) {
                     state.colleagues = JSON.parse(JSON.stringify(DEFAULT_COLLEAGUES));
                 }
+                state.activeColleagueId = safeStorage.getItem('ai_active_colleague') || null;
+                updateColleagueUI();
             });
         }
 
@@ -569,9 +582,14 @@
             document.getElementById('chatMessages').scrollTop = 99999;
 
             var col = findInArray(state.colleagues, function (c) { return c.id === state.activeColleagueId; });
-            var systemNote = col ? '\n[Navodila za asistenta: ' + col.instruction + ']' : '';
+            var instruction = col ? col.instruction : "";
 
-            apiRequest('POST', API_BASE + '/chat', { query: text + systemNote, model: document.getElementById('modelSelect').value, use_rag: true }, function (err, data) {
+            apiRequest('POST', API_BASE + '/chat', { 
+                query: text, 
+                model: document.getElementById('modelSelect').value, 
+                use_rag: true,
+                persona_instruction: instruction
+            }, function (err, data) {
                 var typing = document.getElementById(typingId);
                 if (typing) typing.parentElement.removeChild(typing);
                 btn.disabled = false;
@@ -665,61 +683,63 @@
 
         function closeColleagueModal() { document.getElementById('colleagueModal').className = 'modal-overlay'; }
 
+        function getCurrentUserName() {
+            try { return (window.shellUI && window.shellUI.Vault) ? window.shellUI.Vault.SessionInfo.AccountName : "MockUser"; } catch(e) { return "MockUser"; }
+        }
+
+        function getCurrentUserGroups() {
+            try {
+                if (window.shellUI && window.shellUI.Vault) {
+                    var groups = window.shellUI.Vault.CurrentUserGroupMemberships;
+                    var names = [];
+                    for(var i=1; i<=groups.Count; i++) { names.push(groups.Item(i).Name); }
+                    return names;
+                }
+            } catch(e) { }
+            return ["Legal Department"]; // Mock for testing
+        }
+
+        function isColleagueAllowed(col) {
+            if (!col.allowed_users && !col.allowed_groups) return true;
+            var users = col.allowed_users || [];
+            if (users.indexOf('*') !== -1) return true;
+            
+            var name = getCurrentUserName();
+            if (users.indexOf(name) !== -1) return true;
+
+            var groups = col.allowed_groups || [];
+            var myGroups = getCurrentUserGroups();
+            for (var i = 0; i < myGroups.length; i++) {
+                if (groups.indexOf(myGroups[i]) !== -1) return true;
+            }
+            return false;
+        }
+
         function renderColleagueModal() {
             var title = document.getElementById('modalTitle');
             var body = document.getElementById('modalBody');
             var footer = document.getElementById('modalFooter');
 
-            if (state.modalMode === 'list') {
-                title.textContent = 'Izberi sodelavca';
-                var html = '<div class="colleague-list">';
-                html += '<div class="colleague-card' + (!state.activeColleagueId ? ' selected' : '') + '" onclick="selectColleague(null)">'
-                    + '<div class="colleague-avatar" style="background:#64748b">A</div>'
-                    + '<div class="colleague-info"><div class="colleague-name">Brez sodelavca</div>'
-                    + '<div class="colleague-desc">Privzeti asistent</div></div></div>';
+            title.textContent = 'Izberi sodelavca';
+            var html = '<div class="colleague-list">';
+            html += '<div class="colleague-card' + (!state.activeColleagueId ? ' selected' : '') + '" onclick="selectColleague(null)">'
+                + '<div class="colleague-avatar" style="background:#64748b">A</div>'
+                + '<div class="colleague-info"><div class="colleague-name">Brez sodelavca</div>'
+                + '<div class="colleague-desc">Privzeti asistent</div></div></div>';
 
-                state.colleagues.forEach(function (col) {
-                    var isSel = state.activeColleagueId === col.id;
-                    html += '<div class="colleague-card' + (isSel ? ' selected' : '') + '" onclick="selectColleague(\'' + col.id + '\')">'
-                        + '<div class="colleague-avatar">' + col.name.charAt(0) + '</div>'
-                        + '<div class="colleague-info"><div class="colleague-name">' + escHtml(col.name) + '</div>'
-                        + '<div class="colleague-desc">' + escHtml(col.instruction.slice(0, 60)) + '...</div></div>'
-                        + '<div class="colleague-actions"><button class="colleague-action-btn" onclick="editColleague(\'' + col.id + '\', event)">Uredi</button></div></div>';
-                });
-                body.innerHTML = html + '</div><button class="add-colleague-btn" onclick="showAddForm()">+ Dodaj sodelavca</button>';
-                footer.innerHTML = '<button class="btn btn-secondary" onclick="closeColleagueModal()">Zapri</button>';
-            } else {
-                var isEdit = state.modalMode === 'edit';
-                var col = isEdit ? findInArray(state.colleagues, function (c) { return c.id === state.editingColleagueId; }) : null;
-                title.textContent = isEdit ? 'Uredi sodelavca' : 'Dodaj sodelavca';
-                body.innerHTML = '<div class="form-group"><label class="form-label">Ime sodelavca</label>'
-                    + '<input type="text" class="form-input" id="colName" value="' + (col ? escHtml(col.name) : '') + '"></div>'
-                    + '<div class="form-group"><label class="form-label">Navodila za obnašanje</label>'
-                    + '<textarea class="form-textarea" id="colInstruction" style="height:120px">' + (col ? escHtml(col.instruction) : '') + '</textarea></div>';
-                footer.innerHTML = '<button class="btn btn-secondary" onclick="state.modalMode=\'list\';renderColleagueModal()">Nazaj</button>'
-                    + '<button class="btn btn-primary" onclick="saveColleague()">Shrani</button>';
-            }
+            state.colleagues.forEach(function (col) {
+                if (!isColleagueAllowed(col)) return;
+                var isSel = state.activeColleagueId === col.id;
+                html += '<div class="colleague-card' + (isSel ? ' selected' : '') + '" onclick="selectColleague(\'' + col.id + '\')">'
+                    + '<div class="colleague-avatar">' + col.name.charAt(0) + '</div>'
+                    + '<div class="colleague-info"><div class="colleague-name">' + escHtml(col.name) + '</div>'
+                    + '<div class="colleague-desc">' + (col.instruction ? escHtml(col.instruction.slice(0, 60)) : '') + '...</div></div></div>';
+            });
+            body.innerHTML = html + '</div>';
+            footer.innerHTML = '<button class="btn btn-secondary" onclick="closeColleagueModal()">Zapri</button>';
         }
 
         function selectColleague(id) { state.activeColleagueId = id; updateColleagueUI(); saveActiveState(); closeColleagueModal(); }
-        function showAddForm() { state.modalMode = 'add'; renderColleagueModal(); }
-        function editColleague(id, e) { if(e) e.stopPropagation(); state.modalMode = 'edit'; state.editingColleagueId = id; renderColleagueModal(); }
-        
-        function saveColleague() {
-            var name = document.getElementById('colName').value.trim();
-            var inst = document.getElementById('colInstruction').value.trim();
-            if (!name || !inst) return;
-            if (state.modalMode === 'edit') {
-                var col = findInArray(state.colleagues, function (c) { return c.id === state.editingColleagueId; });
-                if (col) { col.name = name; col.instruction = inst; saveColleagueToBackend(col); }
-            } else {
-                var newCol = { id: genId(), name: name, instruction: inst };
-                state.colleagues.push(newCol);
-                saveColleagueToBackend(newCol);
-            }
-            state.modalMode = 'list';
-            renderColleagueModal();
-        }
 
         function updateColleagueUI() {
             var col = findInArray(state.colleagues, function (c) { return c.id === state.activeColleagueId; });

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<application
+    type="vault-application"
+    version="1.0.0.0">
+    <guid>7891A13C-1DAB-40AA-BC02-D5DFDFB1234F</guid>
+    <name>AI Admin Server</name>
+    <description>Server-side extensions for AI Assistant.</description>
+    <publisher>Antigravity</publisher>
+</application>

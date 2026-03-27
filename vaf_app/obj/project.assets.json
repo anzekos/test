@@ -1,0 +1,457 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.7.2": {
+      "Interop.MFilesAPI/23.12.3": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Interop.MFilesAPI.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Interop.MFilesAPI.dll": {}
+        },
+        "build": {
+          "build/_._": {}
+        }
+      },
+      "MFiles.Crypto/23.12.3": {
+        "type": "package",
+        "compile": {
+          "lib/net472/MFiles.Crypto.dll": {}
+        },
+        "runtime": {
+          "lib/net472/MFiles.Crypto.dll": {}
+        }
+      },
+      "MFiles.VAF/24.1.706.1": {
+        "type": "package",
+        "dependencies": {
+          "Interop.MFilesAPI": "[23.12.3]",
+          "MFiles.Crypto": "[23.12.3]",
+          "MFiles.VAF.Configuration": "[23.12.3]",
+          "Newtonsoft.Json": "[10.0.3]"
+        },
+        "compile": {
+          "lib/net472/MFiles.VAF.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net472/MFiles.VAF.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net472/MFiles.VAF.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net472/MFiles.VAF.resources.dll": {}
+        }
+      },
+      "MFiles.VAF.Configuration/23.12.3": {
+        "type": "package",
+        "dependencies": {
+          "Interop.MFilesAPI": "23.12.3",
+          "MFiles.Crypto": "23.12.3"
+        },
+        "compile": {
+          "lib/net472/MFiles.VAF.Configuration.Interfaces.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net472/MFiles.VAF.Configuration.dll": {
+            "related": ".Interfaces.pdb;.Interfaces.xml;.pdb;.xml"
+          },
+          "lib/net472/MFiles.VAF.Configuration.resources.dll": {}
+        },
+        "runtime": {
+          "lib/net472/MFiles.VAF.Configuration.Interfaces.dll": {
+            "related": ".pdb;.xml"
+          },
+          "lib/net472/MFiles.VAF.Configuration.dll": {
+            "related": ".Interfaces.pdb;.Interfaces.xml;.pdb;.xml"
+          },
+          "lib/net472/MFiles.VAF.Configuration.resources.dll": {}
+        }
+      },
+      "MFiles.VAF.Configuration.Logging.NLog/23.12.3": {
+        "type": "package",
+        "dependencies": {
+          "MFiles.VAF.Configuration": "23.12.3",
+          "NLog": "5.0.1",
+          "NLog.Database": "5.0.1"
+        },
+        "compile": {
+          "lib/net472/MFiles.VAF.Configuration.Logging.NLog.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net472/MFiles.VAF.Configuration.Logging.NLog.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "MFiles.VAF.Extensions/24.1.63": {
+        "type": "package",
+        "dependencies": {
+          "MFiles.VAF": "24.1.706.1",
+          "MFiles.VAF.Configuration.Logging.NLog": "23.12.3",
+          "MFilesAPI.Extensions": "23.3.2"
+        },
+        "compile": {
+          "lib/net472/MFiles.VAF.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/net472/MFiles.VAF.Extensions.dll": {}
+        },
+        "resource": {
+          "lib/net472/fi/MFiles.VAF.Extensions.resources.dll": {
+            "locale": "fi"
+          },
+          "lib/net472/fr/MFiles.VAF.Extensions.resources.dll": {
+            "locale": "fr"
+          }
+        }
+      },
+      "MFilesAPI.Extensions/23.3.2": {
+        "type": "package",
+        "dependencies": {
+          "Interop.MFilesAPI": "21.11.3"
+        },
+        "compile": {
+          "lib/net472/MFilesAPI.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/net472/MFilesAPI.Extensions.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "NLog/5.0.1": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Configuration",
+          "System.Core",
+          "System.IO.Compression",
+          "System.Xml"
+        ],
+        "compile": {
+          "lib/net46/NLog.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net46/NLog.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "NLog.Database/5.0.1": {
+        "type": "package",
+        "dependencies": {
+          "NLog": "5.0.1"
+        },
+        "frameworkAssemblies": [
+          "System",
+          "System.Configuration",
+          "System.Core",
+          "System.Data",
+          "System.Transactions"
+        ],
+        "compile": {
+          "lib/net46/NLog.Database.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net46/NLog.Database.dll": {
+            "related": ".xml"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Interop.MFilesAPI/23.12.3": {
+      "sha512": "Xag/1/SCGKyGM6VutQ0QMli7wLLfG4ARSaVNuJ5EdIFZyPvAURpEULmsAQ1qyKpRn7bOsbvOlIbGzz0BDGFKZQ==",
+      "type": "package",
+      "path": "interop.mfilesapi/23.12.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Interop.MFilesAPI.targets",
+        "images/M-Files.png",
+        "interop.mfilesapi.23.12.3.nupkg.sha512",
+        "interop.mfilesapi.nuspec",
+        "lib/net45/Interop.MFilesAPI.dll",
+        "lib/net5.0-windows7.0/Interop.MFilesAPI.dll"
+      ]
+    },
+    "MFiles.Crypto/23.12.3": {
+      "sha512": "1wv7goOm9L1BCXrPoGLt4HsGmJVieNW5LqPsEdgfGcPyihDRc9oH7iyCWn4IP6095BluY0NsY+bCapLCW+34HQ==",
+      "type": "package",
+      "path": "mfiles.crypto/23.12.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "images/M-Files.png",
+        "lib/net472/MFiles.Crypto.dll",
+        "mfiles.crypto.23.12.3.nupkg.sha512",
+        "mfiles.crypto.nuspec"
+      ]
+    },
+    "MFiles.VAF/24.1.706.1": {
+      "sha512": "M93Co8sn+eTZrK1NHTgh6j7i1X5roKnW/RCfG88+agZF7+f+autsYMLMOlPDAmJLk/YUKDoUY9kUB2PFe97rZQ==",
+      "type": "package",
+      "path": "mfiles.vaf/24.1.706.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "images/M-Files.png",
+        "lib/net472/MFiles.VAF.dll",
+        "lib/net472/MFiles.VAF.pdb",
+        "lib/net472/MFiles.VAF.resources.dll",
+        "lib/net472/MFiles.VAF.xml",
+        "mfiles.vaf.24.1.706.1.nupkg.sha512",
+        "mfiles.vaf.nuspec",
+        "tools/init.ps1"
+      ]
+    },
+    "MFiles.VAF.Configuration/23.12.3": {
+      "sha512": "uJEmg/jKsosVfy26hnQkNbLv6VF9TOse2zktOggJpVWKhxV9dnQ2ISRs8MMiMTSXQGwsKTsDyVDck3Q0lshImA==",
+      "type": "package",
+      "path": "mfiles.vaf.configuration/23.12.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "images/M-Files.png",
+        "lib/net472/MFiles.VAF.Configuration.Interfaces.dll",
+        "lib/net472/MFiles.VAF.Configuration.Interfaces.pdb",
+        "lib/net472/MFiles.VAF.Configuration.Interfaces.xml",
+        "lib/net472/MFiles.VAF.Configuration.dll",
+        "lib/net472/MFiles.VAF.Configuration.pdb",
+        "lib/net472/MFiles.VAF.Configuration.resources.dll",
+        "lib/net472/MFiles.VAF.Configuration.xml",
+        "mfiles.vaf.configuration.23.12.3.nupkg.sha512",
+        "mfiles.vaf.configuration.nuspec"
+      ]
+    },
+    "MFiles.VAF.Configuration.Logging.NLog/23.12.3": {
+      "sha512": "jeYGSWcyWHCbLk6yhCoM5QniRjKge/IYFIdvO1AKdok76nHzOAWveM1Yp5x6TtNCu+Iv6n+3XlhEEaMB8HVjcQ==",
+      "type": "package",
+      "path": "mfiles.vaf.configuration.logging.nlog/23.12.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "images/M-Files.png",
+        "lib/net472/MFiles.VAF.Configuration.Logging.NLog.dll",
+        "lib/net472/MFiles.VAF.Configuration.Logging.NLog.pdb",
+        "lib/net472/MFiles.VAF.Configuration.Logging.NLog.xml",
+        "mfiles.vaf.configuration.logging.nlog.23.12.3.nupkg.sha512",
+        "mfiles.vaf.configuration.logging.nlog.nuspec"
+      ]
+    },
+    "MFiles.VAF.Extensions/24.1.63": {
+      "sha512": "4wMzN8yhhj76Yuocz3sy7YQsm08IzbU3E9Qndu7BPTrltHliKiEpHEAdzP0j+UY772BEPsGr40K5kQQu8MdmZg==",
+      "type": "package",
+      "path": "mfiles.vaf.extensions/24.1.63",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net472/MFiles.VAF.Extensions.dll",
+        "lib/net472/fi/MFiles.VAF.Extensions.resources.dll",
+        "lib/net472/fr/MFiles.VAF.Extensions.resources.dll",
+        "logo.png",
+        "mfiles.vaf.extensions.24.1.63.nupkg.sha512",
+        "mfiles.vaf.extensions.nuspec",
+        "nuget-readme.md"
+      ]
+    },
+    "MFilesAPI.Extensions/23.3.2": {
+      "sha512": "jbBBnzGDDUvtgUwwyEUS8W0Mu8fBH4dfvHbrb3wRH7THpnrYhYbskhfgdTalVvB9PZvcoXRqi1gs9HtL6qw1Qg==",
+      "type": "package",
+      "path": "mfilesapi.extensions/23.3.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/MFilesAPI.Extensions.dll",
+        "lib/net472/MFilesAPI.Extensions.dll",
+        "lib/netstandard2.0/MFilesAPI.Extensions.dll",
+        "logo.png",
+        "mfilesapi.extensions.23.3.2.nupkg.sha512",
+        "mfilesapi.extensions.nuspec"
+      ]
+    },
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
+    "NLog/5.0.1": {
+      "sha512": "lNErNEPzYiZtUAlgvXpSRxUIPLIDHTLA8pKxkDDV//DCqzwp98FitFemOEmJjIuPvk3GC3ytrQMXsy7P9RTPIw==",
+      "type": "package",
+      "path": "nlog/5.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "N.png",
+        "lib/net35/NLog.dll",
+        "lib/net35/NLog.xml",
+        "lib/net45/NLog.dll",
+        "lib/net45/NLog.xml",
+        "lib/net46/NLog.dll",
+        "lib/net46/NLog.xml",
+        "lib/netstandard1.3/NLog.dll",
+        "lib/netstandard1.3/NLog.xml",
+        "lib/netstandard1.5/NLog.dll",
+        "lib/netstandard1.5/NLog.xml",
+        "lib/netstandard2.0/NLog.dll",
+        "lib/netstandard2.0/NLog.xml",
+        "nlog.5.0.1.nupkg.sha512",
+        "nlog.nuspec"
+      ]
+    },
+    "NLog.Database/5.0.1": {
+      "sha512": "AelsKAqtQYaRvGuJzhqfJYM3pp1OlT2fvtCpWEblUMUfsKVk5hkXrlNOrgA4HSAgoM1XMC3XrzgzS40yBdcGlw==",
+      "type": "package",
+      "path": "nlog.database/5.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "N.png",
+        "lib/net35/NLog.Database.dll",
+        "lib/net35/NLog.Database.xml",
+        "lib/net45/NLog.Database.dll",
+        "lib/net45/NLog.Database.xml",
+        "lib/net46/NLog.Database.dll",
+        "lib/net46/NLog.Database.xml",
+        "lib/netstandard1.3/NLog.Database.dll",
+        "lib/netstandard1.3/NLog.Database.xml",
+        "lib/netstandard1.5/NLog.Database.dll",
+        "lib/netstandard1.5/NLog.Database.xml",
+        "lib/netstandard2.0/NLog.Database.dll",
+        "lib/netstandard2.0/NLog.Database.xml",
+        "nlog.database.5.0.1.nupkg.sha512",
+        "nlog.database.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.7.2": [
+      "MFiles.VAF.Extensions >= 24.1.63",
+      "Newtonsoft.Json >= 13.0.3"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\kosan\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\kosan\\.gemini\\antigravity\\scratch\\mfiles-ai-addon\\vaf_app\\AILegalAssistant.VAF.csproj",
+      "projectName": "AILegalAssistant.VAF",
+      "projectPath": "C:\\Users\\kosan\\.gemini\\antigravity\\scratch\\mfiles-ai-addon\\vaf_app\\AILegalAssistant.VAF.csproj",
+      "packagesPath": "C:\\Users\\kosan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kosan\\.gemini\\antigravity\\scratch\\mfiles-ai-addon\\vaf_app\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\kosan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net472"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net472": {
+          "framework": "net472",
+          "targetAlias": "net472",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.200"
+    },
+    "frameworks": {
+      "net472": {
+        "framework": "net472",
+        "targetAlias": "net472",
+        "dependencies": {
+          "MFiles.VAF.Extensions": {
+            "target": "Package",
+            "version": "[24.1.63, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.3, )"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201\\RuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  "logs": [
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: MFiles.VAF 24.1.706.1 requires Newtonsoft.Json (= 10.0.3) but version Newtonsoft.Json 13.0.3 was resolved.",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net472"
+      ]
+    }
+  ]
+}
