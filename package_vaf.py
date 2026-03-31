@@ -5,14 +5,14 @@ def package_vaf():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     vaf_dir = os.path.join(base_dir, "vaf_app")
     
-    # Check both Debug and Release for DLLs
-    bin_debug = os.path.join(vaf_dir, "bin", "Debug", "net472")
+    # Check both Release and Debug for DLLs (prefer Release)
     bin_release = os.path.join(vaf_dir, "bin", "Release", "net472")
+    bin_debug = os.path.join(vaf_dir, "bin", "Debug", "net472")
     
-    source_dir = bin_debug if os.path.exists(bin_debug) else bin_release
+    source_dir = bin_release if os.path.exists(bin_release) else bin_debug
     
     if not os.path.exists(source_dir):
-        print(f"Error: Could not find build output in {bin_debug} or {bin_release}. Please build in Visual Studio first.")
+        print(f"Error: Could not find build output. Please run 'build_vaf.py' or build in VS first.")
         return
 
     output_mfappx = os.path.join(base_dir, "AILegalAssistant.VAF.mfappx")

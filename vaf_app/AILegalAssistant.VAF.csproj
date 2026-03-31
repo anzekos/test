@@ -1,27 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>net472</TargetFramework>
-		<OutputType>Library</OutputType>
-		<RootNamespace>AILegalAssistant</RootNamespace>
-		<AssemblyName>AILegalAssistant.VAF</AssemblyName>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	</PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <OutputType>Library</OutputType>
+        <RootNamespace>AILegalAssistant</RootNamespace>
+        <AssemblyName>AILegalAssistant.VAF</AssemblyName>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <!-- Utišamo NU1608: Newtonsoft 13.0.3 je varen (fixes CVE), 10.0.3 ima ranljivost -->
+        <NoWarn>NU1608</NoWarn>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="MFiles.VAF.Extensions" Version="24.1.63" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MFiles.VAF.Extensions" Version="24.1.63" />
+        <!-- 13.0.3 je varna verzija — ranljivost je v verzijah pred 13.0.1 -->
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    </ItemGroup>
 
-	<ItemGroup>
-		<Reference Include="System" />
-		<Reference Include="System.Core" />
-		<Reference Include="System.Runtime.Serialization" />
-		<Reference Include="System.Xml" />
-	</ItemGroup>
+    <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Runtime.Serialization" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
 
-	<ItemGroup>
-		<None Include="appdef.xml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
+    <ItemGroup>
+        <None Include="appdef.xml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 </Project>

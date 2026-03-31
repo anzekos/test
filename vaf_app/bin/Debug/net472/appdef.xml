@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <application
-    type="vault-application"
-    version="1.0.0.0">
-    <guid>7891A13C-1DAB-40AA-BC02-D5DFDFB1234F</guid>
-    <name>AI Admin Server</name>
-    <description>Server-side extensions for AI Assistant.</description>
+    type="server-application"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.m-files.com/schemas/appdef-server-v2.xsd">
+    <guid>0B3E8C11-9A22-4D93-9F9B-B12345678912</guid>
+    <name>AI Legal Assistant Server-Side</name>
+    <description>M-Files VAF Configuration for AI Colleagues</description>
     <publisher>Antigravity</publisher>
+    <version>1.3.0.0</version>
+    <copyright>Antigravity 2026</copyright>
+    <required-m-files-version>21.0.0.0</required-m-files-version>
+    <extension-objects>
+        <extension-object>
+            <name>AILegalAssistant.VaultApplication</name>
+            <assembly>AILegalAssistant.VAF.dll</assembly>
+            <class>AILegalAssistant.VaultApplication</class>
+        </extension-object>
+    </extension-objects>
+    <!-- ✅ Dodamo eksplicitno definicijo razširitvenih metod -->
+    <extension-methods>
+        <extension-method>
+            <name>GetAISodelavci</name>
+            <extension-object>AILegalAssistant.VaultApplication</extension-object>
+        </extension-method>
+        <!-- Če uporabljate tudi CreateAISodelavec, ga dodajte -->
+        <extension-method>
+            <name>CreateAISodelavec</name>
+            <extension-object>AILegalAssistant.VaultApplication</extension-object>
+        </extension-method>
+    </extension-methods>
 </application>

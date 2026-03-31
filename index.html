@@ -187,6 +187,73 @@
     </div>
 
     <script>
+        // M-Files integration
+        let vault = null;
+        let colleagues = [];
+        let selectedColleague = null;
+
+        let backendUrl = "http://localhost:8000";
+
+        function OnDisplay(dashboard) {
+            vault = dashboard.Vault;
+            loadConfiguration();
+        }
+
+        function loadConfiguration() {
+            try {
+                if (!vault) return;
+                
+                // Read from Named Value Storage
+                const nvs = vault.NamedValueStorageOperations.GetNamedValues(
+                    1, // MFNamedValueType.MFConfigurationValue
+                    "AILegalAssistant.Config"
+                );
+                
+                const configJson = nvs.Value("Colleagues");
+                if (configJson) {
+                    const data = JSON.parse(configJson);
+                    colleagues = data.Colleagues || [];
+                    updateColleagueSelector();
+                }
+
+                const url = nvs.Value("BackendUrl");
+                if (url) {
+                    backendUrl = url;
+                }
+            } catch (e) {
+                console.error("Failed to load config from NVS:", e);
+            }
+        }
+
+        function updateColleagueSelector() {
+            const header = document.querySelector(".header");
+            
+            // Create selector if it doesn't exist
+            let selector = document.getElementById("colleagueSelector");
+            if (!selector) {
+                selector = document.createElement("select");
+                selector.id = "colleagueSelector";
+                selector.style.padding = "5px";
+                selector.style.borderRadius = "8px";
+                selector.style.border = "1px solid #ddd";
+                selector.style.fontSize = "12px";
+                
+                selector.onchange = (e) => {
+                    selectedColleague = colleagues.find(c => c.id === e.target.value);
+                };
+                
+                header.appendChild(selector);
+            }
+            
+            selector.innerHTML = colleagues.map(c => 
+                `<option value="${c.id}">${c.name}</option>`
+            ).join("");
+            
+            if (colleagues.length > 0) {
+                selectedColleague = colleagues[0];
+                selector.value = selectedColleague.id;
+            }
+        }
 
         const textarea = document.getElementById("queryInput");
 
@@ -203,7 +270,6 @@
         });
 
         function sendMessage() {
-
             const input = document.getElementById("queryInput");
             const messages = document.getElementById("chatMessages");
             const btn = document.getElementById("sendBtn");
@@ -219,18 +285,13 @@
 
             input.value = "";
             input.style.height = "auto";
-
             messages.scrollTop = messages.scrollHeight;
 
             // TYPING DOTS
             const typing = document.createElement("div");
             typing.className = "message bot typing";
             typing.id = "typingIndicator";
-            typing.innerHTML = `
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-    `;
+            typing.innerHTML = `<div class="dot"></div><div class="dot"></div><div class="dot"></div>`;
             messages.appendChild(typing);
             messages.scrollTop = messages.scrollHeight;
 
@@ -238,34 +299,39 @@
 
             // API CALL
             const xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://localhost:8000/api/chat", true);
+            xhr.open("POST", backendUrl + "/api/chat", true);
             xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
-
                     btn.disabled = false;
-
-                    // REMOVE TYPING
                     const typingEl = document.getElementById("typingIndicator");
                     if (typingEl) typingEl.remove();
 
                     if (xhr.status === 200) {
                         const data = JSON.parse(xhr.responseText);
-
                         const botMsg = document.createElement("div");
                         botMsg.className = "message bot";
                         botMsg.innerHTML = data.reply.replace(/\n/g, "<br>");
                         messages.appendChild(botMsg);
+                    } else {
+                        const errorMsg = document.createElement("div");
+                        errorMsg.className = "message bot";
+                        errorMsg.style.color = "red";
+                        errorMsg.innerText = "Error connecting to backend.";
+                        messages.appendChild(errorMsg);
                     }
-
                     messages.scrollTop = messages.scrollHeight;
                 }
             };
 
-            xhr.send(JSON.stringify({ query: text }));
+            const payload = { 
+                query: text,
+                colleague_id: selectedColleague ? selectedColleague.id : null,
+                persona_instruction: selectedColleague ? selectedColleague.instruction : ""
+            };
+            xhr.send(JSON.stringify(payload));
         }
-
     </script>
 
 </body>

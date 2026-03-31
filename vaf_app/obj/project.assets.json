@@ -413,6 +413,9 @@
         }
       },
       "warningProperties": {
+        "noWarn": [
+          "NU1608"
+        ],
         "warnAsError": [
           "NU1605"
         ]
@@ -441,17 +444,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1608",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: MFiles.VAF 24.1.706.1 requires Newtonsoft.Json (= 10.0.3) but version Newtonsoft.Json 13.0.3 was resolved.",
-      "libraryId": "Newtonsoft.Json",
-      "targetGraphs": [
-        "net472"
-      ]
-    }
-  ]
+  }
 }

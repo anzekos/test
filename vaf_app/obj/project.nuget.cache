@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ul/oC7SpLlw=",
+  "dgSpecHash": "ix6QN0KQAZI=",
   "success": true,
   "projectFilePath": "C:\\Users\\kosan\\.gemini\\antigravity\\scratch\\mfiles-ai-addon\\vaf_app\\AILegalAssistant.VAF.csproj",
   "expectedPackageFiles": [
@@ -15,18 +15,5 @@
     "C:\\Users\\kosan\\.nuget\\packages\\nlog\\5.0.1\\nlog.5.0.1.nupkg.sha512",
     "C:\\Users\\kosan\\.nuget\\packages\\nlog.database\\5.0.1\\nlog.database.5.0.1.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1608",
-      "level": "Warning",
-      "message": "Detected package version outside of dependency constraint: MFiles.VAF 24.1.706.1 requires Newtonsoft.Json (= 10.0.3) but version Newtonsoft.Json 13.0.3 was resolved.",
-      "projectPath": "C:\\Users\\kosan\\.gemini\\antigravity\\scratch\\mfiles-ai-addon\\vaf_app\\AILegalAssistant.VAF.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\kosan\\.gemini\\antigravity\\scratch\\mfiles-ai-addon\\vaf_app\\AILegalAssistant.VAF.csproj",
-      "libraryId": "Newtonsoft.Json",
-      "targetGraphs": [
-        "net472"
-      ]
-    }
-  ]
+  "logs": []
 }
