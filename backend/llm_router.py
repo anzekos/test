@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 class LLMRouter:
-    """Preprost router za Claude API klice s podporo za multi-turn conversation."""
+    """Preprosti router za Claude API klice s podporo za multi-turn conversation."""
 
     def __init__(self):
         self.claude_key = os.getenv("ANTHROPIC_API_KEY")
@@ -19,22 +19,14 @@ class LLMRouter:
         messages: List[Dict[str, str]],
         system_prompt: Optional[str] = None,
     ) -> str:
-        """
-        Pošlje multi-turn sporočila na izbrani LLM.
-        
-        Args:
-            model_name: ime modela ("claude", "gemini", "mistral")
-            messages: seznam sporočil [{"role": "user"|"assistant", "content": "..."}]
-            system_prompt: opcijski system prompt (persona instrukcija)
-        """
         try:
             if model_name.lower() == "claude":
                 return self._call_claude(messages, system_prompt)
             else:
-                return f"Model '{model_name}' trenutno ni podprt. Uporabite 'claude'."
+                return f"Model '{model_name}' trenutno ni podprt. Prosim izberite 'claude'."
         except Exception as e:
             logger.error(f"Napaka pri klicu modela {model_name}: {e}", exc_info=True)
-            return f"Prišlo je do napake pri komunikaciji z modelom {model_name}: {str(e)}"
+            return f"Napaka pri komunikaciji z modelom: {str(e)}"
 
     def _call_claude(
         self,
@@ -43,25 +35,22 @@ class LLMRouter:
     ) -> str:
         if not self.claude_key:
             return (
-                "**Napaka:** ANTHROPIC_API_KEY ni nastavljen v `.env` datoteki.\n\n"
-                "Prosim ustvari datoteko `backend/.env` z vrstico:\n"
-                "`ANTHROPIC_API_KEY=sk-ant-...`"
+                "**Napaka:** ANTHROPIC_API_KEY ni nastavljen.\n"
+                "Dodajte ga v datoteko backend/.env"
             )
 
         import anthropic
 
         client = anthropic.Anthropic(api_key=self.claude_key)
 
-        # Privzeti system prompt
         default_system = (
-            "Si prijazen in strokoven AI asistent integriran v M-Files. "
-            "Odgovarjaš v slovenščini, razen če uporabnik piše v drugem jeziku. "
+            "Si prijazen in strokoven AI asistent integriran v sistem M-Files. "
+            "Odgovarjas v slovenscini, razen ce uporabnik pise v drugem jeziku. "
             "Odgovori naj bodo jasni, strukturirani in koristni."
         )
 
         system = system_prompt if system_prompt else default_system
 
-        # Klic Claude Messages API
         response = client.messages.create(
             model="claude-sonnet-4-6",
             max_tokens=4096,

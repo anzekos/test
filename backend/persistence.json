@@ -1,11 +1,40 @@
 {
-  "chats": [],
+  "chats": [
+    {
+      "id": "mnemdcje30chpjyp3icw",
+      "title": "hej ali delas claude?",
+      "messages": [
+        {
+          "role": "user",
+          "text": "hej ali delas claude?"
+        },
+        {
+          "role": "bot",
+          "text": "Hej! Da, delam! 😊\n\nSem AI asistent, integriran v sistem **M-Files**. Pripravljen sem ti pomagati z vprašanji glede:\n\n- 📁 **Upravljanja dokumentov** v M-Files\n- 🔍 **Iskanja in organizacije** vsebine\n- ⚙️ **Funkcionalnosti in nastavitev** sistema\n- 💡 **Splošnih vprašanj** in podpore\n\nKako ti lahko pomagam? 😊",
+          "sources": []
+        },
+        {
+          "role": "user",
+          "text": "kaj mi znaš povedat o m files?"
+        },
+        {
+          "role": "bot",
+          "text": "# M-Files – Sistem za upravljanje dokumentov 📁\n\n## Kaj je M-Files?\nM-Files je **platforma za upravljanje informacij in dokumentov** (DMS/ECM), ki podjetjem pomaga organizirati, najti in upravljati dokumente ter podatke na pameten način.\n\n---\n\n## Ključne lastnosti\n\n### 🔍 Iskanje po metapodatkih\n- Dokumenti se **ne shranjujejo v mapah**, temveč se organizirajo glede na **lastnosti (metapodatke)**\n- Npr. vrsta dokumenta, projekt, stranka, datum, avtor...\n\n### 📂 \"What it is, not where it is\"\n- Filozofija M-Files – iščeš po **vsebini in lastnostih**, ne po lokaciji datoteke\n\n### 🔄 Verzioniranje\n- Sistem samodejno shranjuje **zgodovino sprememb** dokumentov\n\n### 🔐 Upravljanje dostopov\n- Natančno določanje **kdo lahko vidi ali ureja** posamezne dokumente\n\n### 🔗 Integracije\n- Povezovanje z **Microsoft Office, Teams, SharePoint, ERP sistemi** itd.\n\n### ☁️ Dostopnost\n- Deluje kot **lokalna rešitev, v oblaku ali hibridno**\n\n---\n\n## Koristi za podjetja\n✅ Manj časa za iskanje dokumentov  \n✅ Boljši pregled nad poslovnimi procesi  \n✅ Skladnost z regulativami (GDPR itd.)  \n✅ Avtomatizacija delovnih tokov  \n\n---\n\nImaš kakšno specifično vprašanje o M-Files? 😊",
+          "sources": []
+        }
+      ],
+      "colleagueId": null,
+      "date": "2026-03-31T12:55:04.634Z"
+    }
+  ],
   "colleagues": [
     {
       "id": "legal-advisor",
       "name": "Svetovalec",
       "instruction": "Ti si strokovni pravni svetovalec integriran v M-Files. Pomagaš pri pravnih vprašanjih, analizi dokumentov in iskanju po PIRS bazi.",
-      "allowed_users": ["*"],
+      "allowed_users": [
+        "*"
+      ],
       "allowed_groups": []
     },
     {
@@ -13,7 +42,9 @@
       "name": "Pogodbenik",
       "instruction": "Ti si specialist za pripravo pogodb. Osredotočaš se na pripravo, pregled in optimizacijo pogodbenega besedila.",
       "allowed_users": [],
-      "allowed_groups": ["Legal Department"]
+      "allowed_groups": [
+        "Legal Department"
+      ]
     }
   ]
 }

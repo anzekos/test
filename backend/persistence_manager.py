@@ -5,6 +5,8 @@ from typing import List, Dict, Any
 
 logger = logging.getLogger(__name__)
 
+MAX_CHATS = 10
+
 class PersistenceManager:
     def __init__(self, filepath: str):
         self.filepath = filepath
@@ -48,8 +50,9 @@ class PersistenceManager:
         
         if not found:
             chats.insert(0, chat)
-            
-        data["chats"] = chats
+
+        # Ohrani samo zadnjih MAX_CHATS chattov
+        data["chats"] = chats[:MAX_CHATS]
         self.save_data(data)
 
     def delete_chat(self, chat_id: str):

@@ -24,42 +24,28 @@ app.add_middleware(
 )
 
 
-# ── Request/Response modeli ──────────────────────────────────────────────────
+# ── Models ───────────────────────────────────────────────────────────────────
 
 class ChatMessage(BaseModel):
-    role: str  # "user" ali "assistant"
+    role: str      # "user" ali "assistant"
     content: str
 
 
 class ChatRequest(BaseModel):
-    query: str
+    query: str = ""
     model: str = "claude"
     messages: Optional[List[ChatMessage]] = None
+    use_rag: bool = False
     persona_instruction: Optional[str] = None
 
 
 class ChatResponse(BaseModel):
     reply: str
     model_used: str
+    sources: List[str] = []
 
 
-class SaveChatRequest(BaseModel):
-    id: str
-    title: str
-    messages: List[Dict[str, Any]]
-    colleagueId: Optional[str] = None
-    date: Optional[str] = None
-
-
-class Colleague(BaseModel):
-    id: str
-    name: str
-    instruction: str
-    allowed_users: Optional[List[str]] = ["*"]
-    allowed_groups: Optional[List[str]] = []
-
-
-# ── API Endpoints ────────────────────────────────────────────────────────────
+# ── Endpoints ────────────────────────────────────────────────────────────────
 
 @app.get("/")
 def read_root():
@@ -68,20 +54,18 @@ def read_root():
 
 @app.post("/api/chat", response_model=ChatResponse)
 def handle_chat(request: ChatRequest):
-    """
-    Glavni chat endpoint. Sprejme conversation history in vrne odgovor od Clauda.
-    """
-    logger.info(f"Chat zahteva: model={request.model}, messages={len(request.messages or [])}")
+    logger.info(f"Chat: model={request.model}, messages={len(request.messages or [])}, query_len={len(request.query)}")
 
     # Sestavi messages array za Claude
     if request.messages and len(request.messages) > 0:
-        # Frontend poslal celotno conversaton history
+        # Frontend je poslal celotno conversation history
         claude_messages = [{"role": m.role, "content": m.content} for m in request.messages]
     else:
-        # Fallback: samo en query (stara kompatibilnost)
+        # Fallback: samo query string (backward compatibility)
+        if not request.query:
+            raise HTTPException(status_code=400, detail="Manjka 'query' ali 'messages'.")
         claude_messages = [{"role": "user", "content": request.query}]
 
-    # System prompt iz persona instrukcije
     system_prompt = request.persona_instruction or None
 
     try:
@@ -90,10 +74,10 @@ def handle_chat(request: ChatRequest):
             messages=claude_messages,
             system_prompt=system_prompt,
         )
-        logger.info("Odgovor uspešno generiran.")
+        logger.info("Odgovor uspesno generiran.")
     except Exception as e:
-        logger.error(f"Napaka pri generiranju odgovora: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=f"Napaka pri LLM generiranju: {str(e)}")
+        logger.error(f"Napaka: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
 
     return ChatResponse(reply=reply, model_used=request.model)
 

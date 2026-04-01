@@ -912,6 +912,13 @@
         function createNewChat() {
             var chat = { id: genId(), title: 'Nov pogovor', messages: [], colleagueId: state.activeColleagueId, date: new Date().toISOString() };
             state.chats.unshift(chat);
+            // Ohrani samo zadnjih 10 chattov — najstarejšega izbriši
+            if (state.chats.length > 10) {
+                var removed = state.chats.splice(10);
+                removed.forEach(function(c) {
+                    apiRequest('DELETE', API_BASE + '/history/' + c.id, null, function() {});
+                });
+            }
             state.activeChatId = chat.id;
             renderChatList();
             renderMessages();
@@ -967,10 +974,22 @@
             var col = findInArray(state.colleagues, function (c) { return c.id === state.activeColleagueId; });
             var instruction = col ? col.instruction : "";
 
+            // Sestavi celotno conversation history za multi-turn chat
+            var chatHistory = [];
+            var currentMessages = chat.messages.slice(0, chat.messages.length - 1); // brez zadnjega user msg
+            currentMessages.forEach(function(msg) {
+                chatHistory.push({
+                    role: msg.role === 'bot' ? 'assistant' : 'user',
+                    content: msg.text || msg.content || ''
+                });
+            });
+            // Dodaj trenutno vprašanje
+            chatHistory.push({ role: 'user', content: text });
+
             apiRequest('POST', API_BASE + '/chat', {
                 query: text,
                 model: document.getElementById('modelSelect').value,
-                use_rag: true,
+                messages: chatHistory,
                 persona_instruction: instruction
             }, function (err, data) {
                 var typing = document.getElementById(typingId);
